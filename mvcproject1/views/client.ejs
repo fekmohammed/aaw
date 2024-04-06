@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Page</title>
+    <link rel="stylesheet" href="/style.css"> <!-- Link to the CSS file -->
+    <style>
+        /* Add any additional CSS styles specific to the client page here */
+        /* You can customize the styles as needed */
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/client">Home</a></li> <!-- Link to client home page -->
+            <li><a href="/products">Products</a></li> <!-- Link to products page -->
+        </ul>
+    </nav>
+    <div class="products">
+        <h1>Products List</h1>
+        <div class="product-cards">
+            <!-- Loop through the products and display them -->
+            <% products.forEach(product => { %>
+            <div class="product-card">
+                <h2><%= product.name %></h2>
+                <p><%= product.description %></p>
+                <p>Price: <%= product.price %>.00 DZD</p>
+            </div>
+            <% }); %>
+        </div>
+    </div>
+</body>
+</html>

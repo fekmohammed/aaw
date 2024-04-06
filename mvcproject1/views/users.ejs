@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User List</title>
+  <link rel="stylesheet" href="/style.css">
+  
+  
+</head>
+<body>
+  <h1>Users List</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Role</th> <!-- New column for displaying role -->
+      </tr>
+    </thead>
+    <tbody>
+      <% users.forEach(user => { %>
+        <tr>
+          <td><%= user.name %></td>
+          <td><%= user.username %></td>
+          <td><%= user.password %></td>
+          <td><%= user.role %></td> <!-- Display role in the table -->
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+  
+  <!-- Button to toggle form visibility -->
+  <button id="addUserBtn">Add User</button>
+  
+  <!-- Form for adding new user (popup) -->
+  <div id="userFormContainer">
+    <form id="userForm" action="/users" method="POST">
+      <h1>Add New User</h1>
+      <input type="text" name="name" placeholder="Name" required>
+      <input type="text" name="username" placeholder="Username" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <label>
+        <input type="radio" name="role" value="manager" required> Manager
+      </label>
+      <label>
+        <input type="radio" name="role" value="client" required> Client
+      </label>
+      <!-- Other form fields -->
+      <button type="submit">Create User</button>
+  </form>
+  
+  </div>
+  
+  <script>
+    // JavaScript to toggle form visibility and close popup
+    const addUserBtn = document.getElementById('addUserBtn');
+    const userFormContainer = document.getElementById('userFormContainer');
+    
+    addUserBtn.addEventListener('click', function() {
+      userFormContainer.style.display = 'flex'; // Display the popup when the button is clicked
+    });
+    
+    // Close the popup when clicking outside the form
+    userFormContainer.addEventListener('click', function(event) {
+      if (event.target === userFormContainer) {
+        userFormContainer.style.display = 'none';
+      }
+    });
+
+    // Close the popup after submitting the form
+    const userForm = document.getElementById('userForm');
+    userForm.addEventListener('submit', function() {
+      userFormContainer.style.display = 'none'; // Hide the popup
+    });
+  </script>
+</body>
+</html>
